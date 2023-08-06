@@ -2,7 +2,7 @@
 
 # movies-explorer-frontend
 
-Репозиторий для проектной работы `MoviesExplorer`, включающий фронтенд часть приложения со следующими возможностями: ...
+Репозиторий для проектной работы `MoviesExplorer`, включающий фронтенд часть приложения.
 
 Адрес репозитория: [https://github.com/SiberianMishka/movies-explorer-frontend]
 

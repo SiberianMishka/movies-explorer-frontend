@@ -1,0 +1,149 @@
+.moviescard {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 360px;
+  max-height: 259px; /* с учетом отступа в макете до блока с кнопкой еще */
+  overflow: hidden;
+  position: relative;
+}
+
+.moviescard__image {
+  vertical-align: bottom;
+  transition: all 0.2s ease-in-out;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.moviescard__image:hover {
+  /* зум превью фильма */
+  cursor: pointer;
+  transform: scale(1.03);
+  transform-origin: 50% 50%;
+}
+
+.moviescard__details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px 28px;
+}
+
+.moviescard__name {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+
+.moviescard__duration {
+  width: 52px;
+  margin: 0;
+  padding: 3px 0;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+  align-items: center;
+  color: #a0a0a0;
+  background-color: #f9f9f9;
+}
+
+.moviescard__like-button {
+  display: none;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 0;
+  margin: 0;
+  width: 72px;
+  height: 21px;
+  border: none;
+  cursor: pointer;
+  background: no-repeat center/contain url('../../images/icon-like.svg');
+}
+
+.moviescard:hover .moviescard__like-button {
+  display: block;
+}
+
+.moviescard__like-button:hover {
+  opacity: 0.8;
+}
+
+.moviescard__like-button_liked {
+  width: 21px;
+  background: no-repeat center/contain url('../../images/icon-liked.svg');
+}
+
+.moviescard__delete-button {
+  display: none;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 0;
+  margin: 0;
+  width: 21px;
+  height: 21px;
+  border: none;
+  cursor: pointer;
+  background: no-repeat center/contain url('../../images/icon-delete.svg');
+}
+
+.moviescard:hover .moviescard__delete-button {
+  display: block;
+}
+
+.moviescard__delete-button:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 870px) {
+  .moviescard {
+    max-width: 339px;
+    max-height: 243px;
+  }
+
+  .moviescard__image {
+    width: 339px;
+    height: 190px;
+  }
+
+  .moviescard__details {
+    padding: 25px 0 12px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .moviescard {
+    max-width: 300px;
+    max-height: 327px;
+  }
+
+  .moviescard__image {
+    max-width: 300px;
+    max-height: 168px;
+  }
+
+  .moviescard__name {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .moviescard__duration {
+    font-size: 11px;
+    line-height: 10px;
+  }
+
+  .moviescard__details {
+    padding: 16px 0 13px;
+  }
+
+  .moviescard__like-button {
+    top: 10px;
+    right: 10px;
+  }
+}

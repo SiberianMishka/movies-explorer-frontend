@@ -7,8 +7,21 @@ import Techs from '../Techs/Techs.jsx';
 import AboutMe from '../AboutMe/AboutMe.jsx';
 import Portfolio from '../Portfolio/Portfolio.jsx';
 
+const Main = () => {
+  return (
+    <>
+      <Promo />
+      <AboutProject />
+      <Techs />
+      <AboutMe />
+      <Portfolio />
+    </>
+  );
+};
+
+export default Main;
+
 // Promo — компонент с вёрсткой баннера страницы «О проекте».
-// NavTab — компонент с навигацией по странице «О проекте».
 // AboutProject — компонент с описанием дипломного проекта.
 // Techs — компонент с использованными технологиями.
 // AboutMe — компонент с информацией о студенте.
