@@ -27,8 +27,8 @@ const AboutProject = () => {
         </div>
       </div>
       <div className="about-project__timeline">
-        <div className="about-project__timeline_one">1 неделя</div>
-        <div className="about-project__timeline_four">4 недели</div>
+        <div className="about-project__timeline-one">1 неделя</div>
+        <div className="about-project__timeline-four">4 недели</div>
       </div>
       <div className="about-project__stack">
         <div className="about-project__stack-back">Back-end</div>

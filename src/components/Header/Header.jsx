@@ -11,7 +11,7 @@ const Header = ({ isLoggedIn }) => {
   return (
     <header
       className={`header ${
-        isLoggedIn ? 'header_type_white' : 'header_type_blue'
+        isLoggedIn ? 'header_type-white' : 'header_type-blue'
       }`}
     >
       <Link className="header__route" to="/">

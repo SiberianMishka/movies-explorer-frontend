@@ -17,11 +17,11 @@
   transform: rotate(90deg);
 }
 
-.header_type_blue {
+.header_type-blue {
   background-color: #465dff;
 }
 
-.header_type_white {
+.header_type-white {
   background: #fff;
 }
 
