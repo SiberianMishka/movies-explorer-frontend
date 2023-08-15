@@ -77,6 +77,10 @@
   margin-top: 204px;
 }
 
+.profile-form__button-save {
+  margin-top: 204px;
+}
+
 .profile-form__button-signout {
   margin: 16px auto 0;
   font-weight: 500;

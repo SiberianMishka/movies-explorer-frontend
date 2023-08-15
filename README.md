@@ -8,8 +8,12 @@
 
 ## Ссылки на проект
 
+Ссылка на пул реквест: 
+
 Ссылка на макет: https://disk.yandex.ru/d/EdmbZe7Nu0ijSg
 
-IP-адрес 84.252.140.69
+IP-адрес: 84.252.140.69
 
-Backend https://stremaus.nomoredomains.xyz
+Frontend: https://stremaus.nomoredomains.xyz
+
+Backend: https://api.stremaus.nomoredomains.xyz

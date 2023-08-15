@@ -13,6 +13,8 @@
   transition: all 0.2s ease-in-out;
   object-fit: cover;
   border-radius: 5px;
+  width: 360px;
+  height: 201px;
 }
 
 .moviescard__image:hover {
@@ -75,6 +77,7 @@
 }
 
 .moviescard__like-button_liked {
+  display: block;
   width: 21px;
   background: no-repeat center/contain url('../../images/icon-liked.svg');
 }

@@ -5,23 +5,14 @@
   flex-direction: column;
 }
 
-.movies__more-button {
-  width: 100%;
-  height: 36px;
-  padding: 0;
-  margin: 50px auto 80px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  background-color: #f9f9f9;
-  transition: all 0.2s ease-in-out;
+.movies__api-error {
+  text-align: center;
+  margin: 60px auto 0;
 }
 
-.movies__more-button:hover {
-  opacity: 0.8;
+.movies__not-found {
+  text-align: center;
+  color: #FF004C;
 }
 
 @media screen and (max-width: 870px) {

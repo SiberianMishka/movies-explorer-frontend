@@ -3,6 +3,11 @@
   min-height: calc(100vh - 246px);
 }
 
+saved-movies__not-found {
+  text-align: center;
+  color: #FF004C;
+}
+
 @media screen and (max-width: 870px) {
   .saved-movies {
     padding: 0 30px;

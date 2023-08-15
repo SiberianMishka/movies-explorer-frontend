@@ -12,7 +12,7 @@
 
 .search__form-input {
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 22px;
   border: none;
   height: 48px;
   width: 100%;
@@ -20,6 +20,9 @@
   display: block;
   background-color: #f9f9f9;
   border-radius: 4px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
 }
 
 .search__form-input::placeholder {
@@ -27,7 +30,6 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
-  padding-left: 22px;
 }
 
 .search__form-button {

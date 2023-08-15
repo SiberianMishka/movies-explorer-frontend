@@ -1,31 +1,83 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 import Logo from '../../images/logo.svg';
+import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import { validateEmail } from '../../utils/validation';
 
-const Login = () => {
+const Login = ({ onLogin, isLoggedIn, serverError }) => {
+  const navigate = useNavigate();
+  const { values, handleChange, errors, isValid } = useFormAndValidation();
+
+  // При успешной авторизации редирект на /movies
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/movies');
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
     <section className="login">
       <Link className="login__route" to="/">
         <img className="login__logo" src={Logo} alt="Логотип сайта" />
       </Link>
       <h1 className="login__title">Рады видеть!</h1>
-      <form className="login-form">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          onLogin(values);
+        }}
+        className="login-form"
+      >
         <div className="login-form__input-field">
-          <label className="login-form__label">E-mail</label>
+          <label className="login-form__label" htmlFor="user-email-input">
+            E-mail
+          </label>
           <input
             className="login-form__input"
             placeholder="Введите почту"
-            defaultValue="pochta@yandex.ru"
+            name="email"
+            value={values.email || ''}
+            id="user-email-input"
+            autoComplete="off"
+            type="email"
+            minLength="2"
+            maxLength="30"
+            required
+            onChange={handleChange}
           />
-          <span className="login-form__input-error login-form__input-error_active"></span>
+          <span className="login-form__input-error">
+            {validateEmail(values.email).message}
+          </span>
         </div>
         <div className="login-form__input-field">
-          <label className="login-form__label">Пароль</label>
-          <input className="login-form__input" placeholder="Введите пароль" />
-          <span className="login-form__input-error login-form__input-error_active"></span>
+          <label className="login-form__label" htmlFor="user-password-input">
+            Пароль
+          </label>
+          <input
+            className="login-form__input"
+            placeholder="Введите пароль"
+            name="password"
+            value={values.password || ''}
+            id="user-password-input"
+            autoComplete="off"
+            type="password"
+            minLength="2"
+            required
+            onChange={handleChange}
+          />
+          <span className="login-form__input-error">{errors.password}</span>
+          <span className="login-form__api-error">
+            {serverError.login.message === 'Failed to fetch'
+              ? 'При авторизации произошла ошибка.'
+              : serverError.login.errorText}
+          </span>
         </div>
-        <button type="submit" className="login-form__button">
+        <button
+          type="submit"
+          className="login-form__button"
+          disabled={!isValid || validateEmail(values.email).inactiveButton}
+        >
           Войти
         </button>
         <div className="login__text">

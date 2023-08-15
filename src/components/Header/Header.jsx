@@ -7,7 +7,15 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import useResize from '../../hooks/useResize.js';
 
 const Header = ({ isLoggedIn }) => {
-  const size = useResize();
+  const { width } = useResize();
+
+  const NavigationComponent =
+    width > 870 || !isLoggedIn ? (
+      <Navigation isLoggedIn={isLoggedIn} />
+    ) : (
+      <BurgerMenu isLoggedIn={isLoggedIn} />
+    );
+
   return (
     <header
       className={`header ${
@@ -17,13 +25,7 @@ const Header = ({ isLoggedIn }) => {
       <Link className="header__route" to="/">
         <img className="header__logo" src={Logo} alt="Логотип сайта" />
       </Link>
-      {size.width > 870 ? (
-        <Navigation isLoggedIn={isLoggedIn} />
-      ) : isLoggedIn ? (
-        <BurgerMenu isLoggedIn={isLoggedIn} />
-      ) : (
-        <Navigation isLoggedIn={isLoggedIn} />
-      )}
+      {NavigationComponent}
     </header>
   );
 };

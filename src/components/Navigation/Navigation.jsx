@@ -5,7 +5,7 @@ import AccoutIcon from '../../images/icon-account.svg';
 import useResize from '../../hooks/useResize';
 
 const Navigation = ({ isLoggedIn }) => {
-  let location = useLocation();
+  const location = useLocation();
   let size = useResize();
 
   const routeClass =

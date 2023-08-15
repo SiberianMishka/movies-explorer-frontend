@@ -1,6 +1,5 @@
 import React from 'react';
 import './Main.css';
-
 import Promo from '../Promo/Promo.jsx';
 import AboutProject from '../AboutProject/AboutProject.jsx';
 import Techs from '../Techs/Techs.jsx';
@@ -20,9 +19,3 @@ const Main = () => {
 };
 
 export default Main;
-
-// Promo — компонент с вёрсткой баннера страницы «О проекте».
-// AboutProject — компонент с описанием дипломного проекта.
-// Techs — компонент с использованными технологиями.
-// AboutMe — компонент с информацией о студенте.
-// Portfolio — компонент со ссылками на другие проекты.

@@ -1,19 +1,21 @@
-import React from 'react';
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Navigation from '../Navigation/Navigation';
 import './BurgerMenu.css';
 
 const BurgerMenu = ({ isLoggedIn }) => {
   const [isOpen, setIsOpen] = useState(false);
+
   const toggleBurgerMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prevState) => !prevState);
   };
+
   const closeBurgerMenu = useCallback(() => {
     setIsOpen(false);
   }, []);
 
   useEffect(() => {
     if (!isOpen) return;
+
     const closeByEscape = (e) => {
       if (e.key === 'Escape') {
         closeBurgerMenu();
@@ -29,10 +31,13 @@ const BurgerMenu = ({ isLoggedIn }) => {
       <button
         className="burger-menu__burger-button"
         onClick={toggleBurgerMenu}
+        aria-label="Открыть меню"
       ></button>
+
       {isOpen && (
         <div className="burger-menu__overlay" onClick={closeBurgerMenu}></div>
       )}
+
       <div
         onClick={(e) => (e.target.href ? closeBurgerMenu() : '')}
         className={`burger-menu__container ${
@@ -42,6 +47,7 @@ const BurgerMenu = ({ isLoggedIn }) => {
         <button
           className="burger-menu__close-button"
           onClick={closeBurgerMenu}
+          aria-label="Закрыть меню"
         ></button>
 
         <Navigation isLoggedIn={isLoggedIn} />

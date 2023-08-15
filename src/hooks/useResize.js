@@ -1,21 +1,34 @@
 import { useEffect, useState } from 'react';
 
-// отслеживаем размер окна браузера
+// Функция задержки
+const debounce = (func, delay) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(this, args), delay);
+  };
+};
+
+// Отслеживаем размер окна браузера
 const useResize = () => {
-  const [size, setSize] = useState({ width: 0, height: 0 });
+  const [size, setSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   useEffect(() => {
     const getSize = () =>
       setSize({ width: window.innerWidth, height: window.innerHeight });
 
-    getSize();
+    const handleResize = debounce(getSize, 10); // Задержка в 10 мс
+    handleResize();
 
-    window.addEventListener('resize', getSize);
+    window.addEventListener('resize', handleResize);
 
-    //удаляем слушатель
-    return () => window.removeEventListener('resize', getSize);
+    // Удаляем слушатель
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
-  // console.log(size);
+
   return size;
 };
 
