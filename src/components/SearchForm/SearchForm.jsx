@@ -9,16 +9,19 @@ const SearchForm = ({ onFilter, searchQuery, serverError }) => {
   const isChecked = JSON.parse(localStorage.getItem('filterCheckBox'));
   const [isShortFilmChecked, setIsShortFilmChecked] = useState(isChecked);
 
+  // Если есть сохраненный запрос, устанавливаем его
   useEffect(() => {
     if (searchQuery.searchText) {
       setSearchText(searchQuery.searchText);
     }
   }, [searchQuery.searchText]);
 
+  // Обработчик изменения текстового поля
   const handleChange = (e) => {
     setSearchText(e.target.value);
   };
 
+  // Проверка и применение чекбокса короткометражек
   const checkFilterCheckbox = () => {
     if (searchText !== '') {
       setIsShortFilmChecked(!isShortFilmChecked);
@@ -37,6 +40,7 @@ const SearchForm = ({ onFilter, searchQuery, serverError }) => {
     }
   };
 
+  // Обработчик отправки формы
   const handleSubmit = (e) => {
     e.preventDefault();
 
