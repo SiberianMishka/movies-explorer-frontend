@@ -146,6 +146,13 @@
   }
 
   .moviescard__like-button {
+    display: block;
+    top: 10px;
+    right: 10px;
+  }
+
+  .moviescard__delete-button {
+    display: block;
     top: 10px;
     right: 10px;
   }

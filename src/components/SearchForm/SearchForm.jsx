@@ -63,7 +63,6 @@ const SearchForm = ({ onFilter, searchQuery, serverError }) => {
           autoComplete="off"
           type="search"
           minLength="1"
-          required
           onChange={handleChange}
         />
 

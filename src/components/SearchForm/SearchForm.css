@@ -32,6 +32,12 @@
   line-height: 18px;
 }
 
+.search-form__input-error {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}
+
 .search__form-button {
   margin: 0;
   padding: 0;

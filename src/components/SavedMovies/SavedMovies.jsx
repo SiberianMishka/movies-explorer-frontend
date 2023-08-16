@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
@@ -6,12 +7,22 @@ import './SavedMovies.css';
 import { SHORT_FILM_LENGTH } from '../../utils/constants';
 
 const SavedMovies = ({ savedMovies, onDeleteMovie }) => {
+  const location = useLocation();
   const localSavedMovies = localStorage.getItem('localSavedMovies');
   const searchQuerySavedMovies = localStorage.getItem('searchQuerySavedMovies');
 
   const [searchQuery, setSearchQuery] = useState({});
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  // При смене страницы удаляем отфильтрованные фильмы
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem('localSavedMovies');
+      localStorage.removeItem('searchQuerySavedMovies');
+      setSearchQuery({});
+    };
+  }, [location.pathname]);
 
   useEffect(() => {
     if (localSavedMovies) {
