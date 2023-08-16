@@ -29,6 +29,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isProfileOk, setIsProfileOk] = useState(false);
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
@@ -150,20 +151,27 @@ function App() {
 
   // Регистрация пользователя
   const handleRegister = (values) => {
-    auth
-      .register(values.name, values.email, values.password)
-      .then((res) => {
-        handleLogin(values);
-      })
-      .catch((error) => {
-        setIsProfileOk(false);
-        setServerError({ ...serverError, register: error });
-        console.log(error);
-      });
+    setIsSubmitting(true);
+    setTimeout(() => {
+      auth
+        .register(values.name, values.email, values.password)
+        .then((res) => {
+          handleLogin(values);
+        })
+        .catch((error) => {
+          setIsProfileOk(false);
+          setServerError({ ...serverError, register: error });
+          console.log(error);
+        })
+        .finally(() => {
+          setIsSubmitting(false);
+        });
+    }, 3000);
   };
 
   // Авторизация пользователя
   const handleLogin = (values) => {
+    setIsSubmitting(true);
     auth
       .authorize(values.email, values.password)
       .then((data) => {
@@ -177,11 +185,15 @@ function App() {
         setIsProfileOk(false);
         setServerError({ ...serverError, login: error });
         console.log(error);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
   };
 
   // Редактирование данных пользователя
   const handleUpdateUser = (user) => {
+    setIsSubmitting(true);
     mainApi
       .updateUserInfo(user)
       .then(() => {
@@ -197,6 +209,9 @@ function App() {
         setIsProfileOk(false);
         setServerError({ ...serverError, profile: error });
         console.log(error);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
   };
 
@@ -267,6 +282,7 @@ function App() {
                     onRegister={handleRegister}
                     isLoggedIn={isLoggedIn}
                     serverError={serverError}
+                    isSubmitting={isSubmitting}
                   />
                 }
               />
@@ -278,6 +294,7 @@ function App() {
                     onLogin={handleLogin}
                     isLoggedIn={isLoggedIn}
                     serverError={serverError}
+                    isSubmitting={isSubmitting}
                   />
                 }
               />
@@ -318,6 +335,7 @@ function App() {
                     onSignOut={handleSignOut}
                     onUpdateUser={handleUpdateUser}
                     serverError={serverError}
+                    isSubmitting={isSubmitting}
                   />
                 }
               />

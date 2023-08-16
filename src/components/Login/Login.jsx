@@ -5,7 +5,7 @@ import Logo from '../../images/logo.svg';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { validateEmail } from '../../utils/validation';
 
-const Login = ({ onLogin, isLoggedIn, serverError }) => {
+const Login = ({ onLogin, isLoggedIn, serverError, isSubmitting }) => {
   const navigate = useNavigate();
   const { values, handleChange, errors, isValid } = useFormAndValidation();
 
@@ -45,6 +45,7 @@ const Login = ({ onLogin, isLoggedIn, serverError }) => {
             maxLength="30"
             required
             onChange={handleChange}
+            disabled={isSubmitting}
           />
           <span className="login-form__input-error">
             {validateEmail(values.email).message}
@@ -65,6 +66,7 @@ const Login = ({ onLogin, isLoggedIn, serverError }) => {
             minLength="2"
             required
             onChange={handleChange}
+            disabled={isSubmitting}
           />
           <span className="login-form__input-error">{errors.password}</span>
           <span className="login-form__api-error">
@@ -76,7 +78,11 @@ const Login = ({ onLogin, isLoggedIn, serverError }) => {
         <button
           type="submit"
           className="login-form__button"
-          disabled={!isValid || validateEmail(values.email).inactiveButton}
+          disabled={
+            !isValid ||
+            validateEmail(values.email).inactiveButton ||
+            isSubmitting
+          }
         >
           Войти
         </button>

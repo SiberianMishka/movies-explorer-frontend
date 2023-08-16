@@ -5,7 +5,13 @@ import { useContext, useState, useEffect } from 'react';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { validateEmail, validateName } from '../../utils/validation';
 
-const Profile = ({ onSignOut, onUpdateUser, serverError, isProfileOk }) => {
+const Profile = ({
+  onSignOut,
+  onUpdateUser,
+  serverError,
+  isProfileOk,
+  isSubmitting,
+}) => {
   const { values, handleChange, isValid, setValues, setIsValid } =
     useFormAndValidation();
   const { currentUser } = useContext(CurrentUserContext);
@@ -52,7 +58,7 @@ const Profile = ({ onSignOut, onUpdateUser, serverError, isProfileOk }) => {
             maxLength="30"
             required
             onChange={handleChange}
-            disabled={!showSaveButton}
+            disabled={!showSaveButton || isSubmitting}
           />
           <span className="profile-form__input-error">
             {validateName(values.name).message}
@@ -74,7 +80,7 @@ const Profile = ({ onSignOut, onUpdateUser, serverError, isProfileOk }) => {
             maxLength="30"
             required
             onChange={handleChange}
-            disabled={!showSaveButton}
+            disabled={!showSaveButton || isSubmitting}
           />
 
           <span className="profile-form__input-error">
@@ -104,7 +110,8 @@ const Profile = ({ onSignOut, onUpdateUser, serverError, isProfileOk }) => {
                 (values.name === currentUser.name &&
                   values.email === currentUser.email) ||
                 validateEmail(values.email).inactiveButton ||
-                validateName(values.name).inactiveButton
+                validateName(values.name).inactiveButton ||
+                isSubmitting
               }
             >
               Сохранить

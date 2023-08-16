@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { validateEmail, validateName } from '../../utils/validation';
 
-const Register = ({ onRegister, isLoggedIn, serverError }) => {
+const Register = ({ onRegister, isLoggedIn, serverError, isSubmitting }) => {
   const navigate = useNavigate();
   const { values, handleChange, errors, isValid } = useFormAndValidation();
 
@@ -45,6 +45,7 @@ const Register = ({ onRegister, isLoggedIn, serverError }) => {
             maxLength="30"
             required
             onChange={handleChange}
+            disabled={isSubmitting}
           />
           <span className="register-form__input-error">
             {validateName(values.name).message}
@@ -66,6 +67,7 @@ const Register = ({ onRegister, isLoggedIn, serverError }) => {
             maxLength="30"
             required
             onChange={handleChange}
+            disabled={isSubmitting}
           />
           <span className="register-form__input-error">
             {validateEmail(values.email).message}
@@ -86,6 +88,7 @@ const Register = ({ onRegister, isLoggedIn, serverError }) => {
             minLength="2"
             required
             onChange={handleChange}
+            disabled={isSubmitting}
           />
           <span className="register-form__input-error"> {errors.password}</span>
           <span className="register-form__api-error">
@@ -100,7 +103,8 @@ const Register = ({ onRegister, isLoggedIn, serverError }) => {
           disabled={
             !isValid ||
             validateEmail(values.email).inactiveButton ||
-            validateName(values.name).inactiveButton
+            validateName(values.name).inactiveButton ||
+            isSubmitting
           }
         >
           Зарегистрироваться
